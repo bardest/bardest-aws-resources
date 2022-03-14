@@ -1,0 +1,1907 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.0.87"
+        }
+      },
+      "BardestAwsResourcesStack": {
+        "id": "BardestAwsResourcesStack",
+        "path": "BardestAwsResourcesStack",
+        "children": {
+          "StorageNestedStack": {
+            "id": "StorageNestedStack",
+            "path": "BardestAwsResourcesStack/StorageNestedStack",
+            "children": {
+              "MetaFilesBucket": {
+                "id": "MetaFilesBucket",
+                "path": "BardestAwsResourcesStack/StorageNestedStack/MetaFilesBucket",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/StorageNestedStack/MetaFilesBucket/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {
+                        "bucketName": "bardest-meta-files",
+                        "corsConfiguration": {
+                          "corsRules": [
+                            {
+                              "allowedMethods": [
+                                "GET"
+                              ],
+                              "allowedOrigins": [
+                                "*"
+                              ]
+                            }
+                          ]
+                        },
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "Policy": {
+                    "id": "Policy",
+                    "path": "BardestAwsResourcesStack/StorageNestedStack/MetaFilesBucket/Policy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "BardestAwsResourcesStack/StorageNestedStack/MetaFilesBucket/Policy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                          "aws:cdk:cloudformation:props": {
+                            "bucket": {
+                              "Ref": "MetaFilesBucket40243DFF"
+                            },
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:GetObject",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "AWS": "*"
+                                  },
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "MetaFilesBucket40243DFF",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.CfnBucketPolicy",
+                          "version": "2.16.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketPolicy",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.Bucket",
+                  "version": "2.16.0"
+                }
+              },
+              "UserFilesBucket": {
+                "id": "UserFilesBucket",
+                "path": "BardestAwsResourcesStack/StorageNestedStack/UserFilesBucket",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/StorageNestedStack/UserFilesBucket/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {
+                        "bucketName": "bardest-user-files",
+                        "corsConfiguration": {
+                          "corsRules": [
+                            {
+                              "maxAge": 3000,
+                              "allowedHeaders": [
+                                "*"
+                              ],
+                              "allowedMethods": [
+                                "HEAD",
+                                "GET",
+                                "POST",
+                                "PUT",
+                                "DELETE"
+                              ],
+                              "allowedOrigins": [
+                                "*"
+                              ],
+                              "exposedHeaders": [
+                                "x-amz-server-side-encryption",
+                                "x-amz-request-id",
+                                "x-amz-id-2",
+                                "ETag"
+                              ]
+                            }
+                          ]
+                        },
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          }
+                        ],
+                        "versioningConfiguration": {
+                          "status": "Enabled"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.Bucket",
+                  "version": "2.16.0"
+                }
+              },
+              "CDKMetadata": {
+                "id": "CDKMetadata",
+                "path": "BardestAwsResourcesStack/StorageNestedStack/CDKMetadata",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "BardestAwsResourcesStack/StorageNestedStack/CDKMetadata/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.0.87"
+                }
+              },
+              "BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn": {
+                "id": "BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn",
+                "path": "BardestAwsResourcesStack/StorageNestedStack/BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.NestedStack",
+              "version": "2.16.0"
+            }
+          },
+          "StorageNestedStack.NestedStack": {
+            "id": "StorageNestedStack.NestedStack",
+            "path": "BardestAwsResourcesStack/StorageNestedStack.NestedStack",
+            "children": {
+              "StorageNestedStack.NestedStackResource": {
+                "id": "StorageNestedStack.NestedStackResource",
+                "path": "BardestAwsResourcesStack/StorageNestedStack.NestedStack/StorageNestedStack.NestedStackResource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFormation::Stack",
+                  "aws:cdk:cloudformation:props": {
+                    "templateUrl": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://s3.eu-west-1.",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          },
+                          "/",
+                          {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+                          },
+                          "/93b424a3c738d4ac3fa78cdc64908e12677d0c4aa609fe057f231cd226df342b.json"
+                        ]
+                      ]
+                    },
+                    "tags": [
+                      {
+                        "key": "application",
+                        "value": "bardest"
+                      },
+                      {
+                        "key": "environment",
+                        "value": "development"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnStack",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.87"
+            }
+          },
+          "CognitoNestedStack": {
+            "id": "CognitoNestedStack",
+            "path": "BardestAwsResourcesStack/CognitoNestedStack",
+            "children": {
+              "UserPool": {
+                "id": "UserPool",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/UserPool",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/UserPool/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Cognito::UserPool",
+                      "aws:cdk:cloudformation:props": {
+                        "accountRecoverySetting": {
+                          "recoveryMechanisms": [
+                            {
+                              "name": "verified_email",
+                              "priority": 1
+                            }
+                          ]
+                        },
+                        "adminCreateUserConfig": {
+                          "allowAdminCreateUserOnly": false
+                        },
+                        "aliasAttributes": [
+                          "email"
+                        ],
+                        "autoVerifiedAttributes": [
+                          "email"
+                        ],
+                        "emailVerificationMessage": "The verification code to your new account is {####}",
+                        "emailVerificationSubject": "Verify your new account",
+                        "mfaConfiguration": "OFF",
+                        "policies": {
+                          "passwordPolicy": {
+                            "minimumLength": 8,
+                            "requireLowercase": true,
+                            "requireUppercase": true,
+                            "requireNumbers": true,
+                            "requireSymbols": true
+                          }
+                        },
+                        "schema": [
+                          {
+                            "name": "name",
+                            "mutable": true,
+                            "required": true
+                          },
+                          {
+                            "name": "email",
+                            "mutable": false,
+                            "required": true
+                          },
+                          {
+                            "name": "phone_number",
+                            "mutable": true,
+                            "required": true
+                          },
+                          {
+                            "name": "birthdate",
+                            "mutable": false,
+                            "required": true
+                          },
+                          {
+                            "name": "address",
+                            "mutable": true,
+                            "required": false
+                          },
+                          {
+                            "name": "picture",
+                            "mutable": true,
+                            "required": false
+                          },
+                          {
+                            "name": "locale",
+                            "mutable": true,
+                            "required": false
+                          },
+                          {
+                            "name": "updated_at",
+                            "mutable": true,
+                            "required": false
+                          },
+                          {
+                            "name": "theme",
+                            "attributeDataType": "String",
+                            "stringAttributeConstraints": {
+                              "maxLength": "8"
+                            },
+                            "mutable": true
+                          },
+                          {
+                            "name": "bio",
+                            "attributeDataType": "String",
+                            "mutable": true
+                          },
+                          {
+                            "name": "identityId",
+                            "attributeDataType": "String",
+                            "mutable": true
+                          }
+                        ],
+                        "smsVerificationMessage": "The verification code to your new account is {####}",
+                        "userPoolName": "bardest-development-up",
+                        "userPoolTags": {
+                          "application": "bardest",
+                          "environment": "development"
+                        },
+                        "verificationMessageTemplate": {
+                          "defaultEmailOption": "CONFIRM_WITH_CODE",
+                          "emailMessage": "The verification code to your new account is {####}",
+                          "emailSubject": "Verify your new account",
+                          "smsMessage": "The verification code to your new account is {####}"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_cognito.CfnUserPool",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.UserPool",
+                  "version": "2.16.0"
+                }
+              },
+              "UserPoolClient": {
+                "id": "UserPoolClient",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/UserPoolClient",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/UserPoolClient/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolClient",
+                      "aws:cdk:cloudformation:props": {
+                        "userPoolId": {
+                          "Ref": "UserPool6BA7E5F2"
+                        },
+                        "allowedOAuthFlows": [
+                          "implicit",
+                          "code"
+                        ],
+                        "allowedOAuthFlowsUserPoolClient": true,
+                        "allowedOAuthScopes": [
+                          "profile",
+                          "phone",
+                          "email",
+                          "openid",
+                          "aws.cognito.signin.user.admin"
+                        ],
+                        "callbackUrLs": [
+                          "https://example.com"
+                        ],
+                        "clientName": "bardest-development-up-cl",
+                        "generateSecret": false,
+                        "supportedIdentityProviders": [
+                          "COGNITO"
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolClient",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.UserPoolClient",
+                  "version": "2.16.0"
+                }
+              },
+              "UserPoolNativeClient": {
+                "id": "UserPoolNativeClient",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/UserPoolNativeClient",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/UserPoolNativeClient/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolClient",
+                      "aws:cdk:cloudformation:props": {
+                        "userPoolId": {
+                          "Ref": "UserPool6BA7E5F2"
+                        },
+                        "allowedOAuthFlows": [
+                          "implicit",
+                          "code"
+                        ],
+                        "allowedOAuthFlowsUserPoolClient": true,
+                        "allowedOAuthScopes": [
+                          "profile",
+                          "phone",
+                          "email",
+                          "openid",
+                          "aws.cognito.signin.user.admin"
+                        ],
+                        "callbackUrLs": [
+                          "https://example.com"
+                        ],
+                        "clientName": "bardest-development-up-ncl",
+                        "generateSecret": true,
+                        "supportedIdentityProviders": [
+                          "COGNITO"
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolClient",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.UserPoolClient",
+                  "version": "2.16.0"
+                }
+              },
+              "DefaultUserGroupRoleAppSyncPolicy": {
+                "id": "DefaultUserGroupRoleAppSyncPolicy",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/DefaultUserGroupRoleAppSyncPolicy",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.16.0"
+                }
+              },
+              "DefaultUserGroupRole": {
+                "id": "DefaultUserGroupRole",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/DefaultUserGroupRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/DefaultUserGroupRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRoleWithWebIdentity",
+                              "Condition": {
+                                "StringEquals": {
+                                  "cognito-identity.amazonaws.com:aud": {
+                                    "Ref": "UserPool6BA7E5F2"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Federated": "cognito-identity.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          "arn:aws:iam::aws:policy/AWSAppSyncInvokeFullAccess"
+                        ],
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.16.0"
+                }
+              },
+              "AdminUserGroupRoleAppSyncPolicy": {
+                "id": "AdminUserGroupRoleAppSyncPolicy",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/AdminUserGroupRoleAppSyncPolicy",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.16.0"
+                }
+              },
+              "AdminUserGroupRole": {
+                "id": "AdminUserGroupRole",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/AdminUserGroupRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/AdminUserGroupRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRoleWithWebIdentity",
+                              "Condition": {
+                                "StringEquals": {
+                                  "cognito-identity.amazonaws.com:aud": {
+                                    "Ref": "UserPool6BA7E5F2"
+                                  }
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Federated": "cognito-identity.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          "arn:aws:iam::aws:policy/AWSAppSyncInvokeFullAccess"
+                        ],
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.16.0"
+                }
+              },
+              "DefaultUserGroup": {
+                "id": "DefaultUserGroup",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/DefaultUserGroup",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "userPoolId": {
+                      "Ref": "UserPool6BA7E5F2"
+                    },
+                    "groupName": "default-ug",
+                    "roleArn": {
+                      "Fn::GetAtt": [
+                        "DefaultUserGroupRole83C8627C",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolGroup",
+                  "version": "2.16.0"
+                }
+              },
+              "AdminUserGroup": {
+                "id": "AdminUserGroup",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/AdminUserGroup",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "userPoolId": {
+                      "Ref": "UserPool6BA7E5F2"
+                    },
+                    "groupName": "admin-ug",
+                    "roleArn": {
+                      "Fn::GetAtt": [
+                        "AdminUserGroupRole0B484615",
+                        "Arn"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolGroup",
+                  "version": "2.16.0"
+                }
+              },
+              "IdentityPool": {
+                "id": "IdentityPool",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/IdentityPool",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPool",
+                  "aws:cdk:cloudformation:props": {
+                    "allowUnauthenticatedIdentities": true,
+                    "cognitoIdentityProviders": [
+                      {
+                        "clientId": {
+                          "Ref": "UserPoolClient2F5918F7"
+                        },
+                        "providerName": {
+                          "Fn::GetAtt": [
+                            "UserPool6BA7E5F2",
+                            "ProviderName"
+                          ]
+                        }
+                      },
+                      {
+                        "clientId": {
+                          "Ref": "UserPoolNativeClient23FD4BF3"
+                        },
+                        "providerName": {
+                          "Fn::GetAtt": [
+                            "UserPool6BA7E5F2",
+                            "ProviderName"
+                          ]
+                        }
+                      }
+                    ],
+                    "identityPoolName": "bardest-development-ip"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.CfnIdentityPool",
+                  "version": "2.16.0"
+                }
+              },
+              "UnauthIdentityPoolRole": {
+                "id": "UnauthIdentityPoolRole",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/UnauthIdentityPoolRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/UnauthIdentityPoolRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRoleWithWebIdentity",
+                              "Condition": {
+                                "StringEquals": {
+                                  "cognito-identity.amazonaws.com:aud": {
+                                    "Ref": "IdentityPool"
+                                  }
+                                },
+                                "ForAnyValue:StringLike": {
+                                  "cognito-identity.amazonaws.com:amr": "unauthenticated"
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Federated": "cognito-identity.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policies": [
+                          {
+                            "policyName": "iyiyeUnauthIdentityPoolRolePolicy",
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "s3:GetObject",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                        },
+                                        "/protected/*"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "s3:PutObject",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                        },
+                                        "/uploads/*"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "s3:ListBucket",
+                                  "Condition": {
+                                    "StringLike": {
+                                      "s3:prefix": [
+                                        "public/",
+                                        "public/*",
+                                        "protected/",
+                                        "protected/*"
+                                      ]
+                                    }
+                                  },
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                  }
+                                },
+                                {
+                                  "Action": [
+                                    "s3:GetObject",
+                                    "s3:PutObject",
+                                    "s3:DeleteObject"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                        },
+                                        "/public/*"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "appsync:GraphQL",
+                                  "Effect": "Allow",
+                                  "Resource": "arn:aws:appsync:eu-west-1:*:apis/*"
+                                },
+                                {
+                                  "Action": "appsync:GraphQL",
+                                  "Effect": "Deny",
+                                  "Resource": "arn:aws:appsync:eu-west-1:*:apis/*/types/Mutation/*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.16.0"
+                }
+              },
+              "AuthIdentityPoolRole": {
+                "id": "AuthIdentityPoolRole",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/AuthIdentityPoolRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/AuthIdentityPoolRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRoleWithWebIdentity",
+                              "Condition": {
+                                "StringEquals": {
+                                  "cognito-identity.amazonaws.com:aud": {
+                                    "Ref": "IdentityPool"
+                                  }
+                                },
+                                "ForAnyValue:StringLike": {
+                                  "cognito-identity.amazonaws.com:amr": "authenticated"
+                                }
+                              },
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Federated": "cognito-identity.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policies": [
+                          {
+                            "policyName": "iyiyeAuthIdentityPoolRolePolicy",
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "lambda:InvokeFunction",
+                                  "Effect": "Allow",
+                                  "Resource": "*"
+                                },
+                                {
+                                  "Action": "s3:GetObject",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                        },
+                                        "/protected/*"
+                                      ]
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "s3:PutObject",
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                          },
+                                          "/uploads/*"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                          },
+                                          "/protected/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": "s3:ListBucket",
+                                  "Condition": {
+                                    "StringLike": {
+                                      "s3:prefix": [
+                                        "public/",
+                                        "public/*",
+                                        "protected/",
+                                        "protected/*",
+                                        "private/${cognito-identity.amazonaws.com:sub}/",
+                                        "private/${cognito-identity.amazonaws.com:sub}/*"
+                                      ]
+                                    }
+                                  },
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                  }
+                                },
+                                {
+                                  "Action": [
+                                    "s3:GetObject",
+                                    "s3:PutObject",
+                                    "s3:DeleteObject"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                          },
+                                          "/public/*"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                          },
+                                          "/protected/${cognito-identity.amazonaws.com:sub}/*"
+                                        ]
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                                          },
+                                          "/private/${cognito-identity.amazonaws.com:sub}/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": "appsync:GraphQL",
+                                  "Effect": "Allow",
+                                  "Resource": "arn:aws:appsync:eu-west-1:*:apis/*"
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        ],
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.16.0"
+                }
+              },
+              "IdentityPoolRoleAttachment": {
+                "id": "IdentityPoolRoleAttachment",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/IdentityPoolRoleAttachment",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Cognito::IdentityPoolRoleAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "identityPoolId": {
+                      "Ref": "IdentityPool"
+                    },
+                    "roles": {
+                      "unauthenticated": {
+                        "Fn::GetAtt": [
+                          "UnauthIdentityPoolRole1DFBBAB5",
+                          "Arn"
+                        ]
+                      },
+                      "authenticated": {
+                        "Fn::GetAtt": [
+                          "AuthIdentityPoolRole3CEC4DAC",
+                          "Arn"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.CfnIdentityPoolRoleAttachment",
+                  "version": "2.16.0"
+                }
+              },
+              "CDKMetadata": {
+                "id": "CDKMetadata",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/CDKMetadata",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "BardestAwsResourcesStack/CognitoNestedStack/CDKMetadata/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.0.87"
+                }
+              },
+              "reference-to-BardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6Outputs.BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn": {
+                "id": "reference-to-BardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6Outputs.BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack/reference-to-BardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6Outputs.BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnParameter",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.NestedStack",
+              "version": "2.16.0"
+            }
+          },
+          "CognitoNestedStack.NestedStack": {
+            "id": "CognitoNestedStack.NestedStack",
+            "path": "BardestAwsResourcesStack/CognitoNestedStack.NestedStack",
+            "children": {
+              "CognitoNestedStack.NestedStackResource": {
+                "id": "CognitoNestedStack.NestedStackResource",
+                "path": "BardestAwsResourcesStack/CognitoNestedStack.NestedStack/CognitoNestedStack.NestedStackResource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFormation::Stack",
+                  "aws:cdk:cloudformation:props": {
+                    "templateUrl": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://s3.eu-west-1.",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          },
+                          "/",
+                          {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+                          },
+                          "/77579079e7a33825f4cd48ed61f500c724574ed09be45ed1ce9ebeb37dc4f86f.json"
+                        ]
+                      ]
+                    },
+                    "parameters": {
+                      "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn": {
+                        "Fn::GetAtt": [
+                          "StorageNestedStackNestedStackStorageNestedStackNestedStackResource6E4B7B88",
+                          "Outputs.BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                        ]
+                      }
+                    },
+                    "tags": [
+                      {
+                        "key": "application",
+                        "value": "bardest"
+                      },
+                      {
+                        "key": "environment",
+                        "value": "development"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnStack",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.87"
+            }
+          },
+          "NetworkNestedStack": {
+            "id": "NetworkNestedStack",
+            "path": "BardestAwsResourcesStack/NetworkNestedStack",
+            "children": {
+              "Vpc": {
+                "id": "Vpc",
+                "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.0.0/16",
+                        "enableDnsHostnames": true,
+                        "enableDnsSupport": true,
+                        "instanceTenancy": "default",
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "ingressSubnet1": {
+                    "id": "ingressSubnet1",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.0.0/24",
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": true,
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "ingress"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Public"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1/Acl",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "VpcingressSubnet1RouteTable804C7A26"
+                            },
+                            "subnetId": {
+                              "Ref": "VpcingressSubnet1Subnet059F22C6"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "DefaultRoute": {
+                        "id": "DefaultRoute",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet1/DefaultRoute",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "VpcingressSubnet1RouteTable804C7A26"
+                            },
+                            "destinationCidrBlock": "0.0.0.0/0",
+                            "gatewayId": {
+                              "Ref": "VpcIGWD7BA715C"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                          "version": "2.16.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "ingressSubnet2": {
+                    "id": "ingressSubnet2",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.1.0/24",
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": true,
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "ingress"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Public"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2/Acl",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "VpcingressSubnet2RouteTable8B0E23A7"
+                            },
+                            "subnetId": {
+                              "Ref": "VpcingressSubnet2SubnetF175D754"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "DefaultRoute": {
+                        "id": "DefaultRoute",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/ingressSubnet2/DefaultRoute",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "VpcingressSubnet2RouteTable8B0E23A7"
+                            },
+                            "destinationCidrBlock": "0.0.0.0/0",
+                            "gatewayId": {
+                              "Ref": "VpcIGWD7BA715C"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                          "version": "2.16.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "rdsSubnet1": {
+                    "id": "rdsSubnet1",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet1",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet1/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.2.0/28",
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": false,
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "rds"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Isolated"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet1/Acl",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet1/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet1/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "VpcrdsSubnet1RouteTableE62E4ED6"
+                            },
+                            "subnetId": {
+                              "Ref": "VpcrdsSubnet1SubnetC2926CEA"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                          "version": "2.16.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "rdsSubnet2": {
+                    "id": "rdsSubnet2",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet2",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet2/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.2.16/28",
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": false,
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "rds"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Isolated"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet2/Acl",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet2/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "Vpc8378EB38"
+                            },
+                            "tags": [
+                              {
+                                "key": "application",
+                                "value": "bardest"
+                              },
+                              {
+                                "key": "environment",
+                                "value": "development"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                          "version": "2.16.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/rdsSubnet2/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "VpcrdsSubnet2RouteTable3E531D9B"
+                            },
+                            "subnetId": {
+                              "Ref": "VpcrdsSubnet2Subnet70A835C8"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                          "version": "2.16.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "IGW": {
+                    "id": "IGW",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/IGW",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "application",
+                            "value": "bardest"
+                          },
+                          {
+                            "key": "environment",
+                            "value": "development"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "BardestAwsResourcesStack/NetworkNestedStack/Vpc"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
+                      "version": "2.16.0"
+                    }
+                  },
+                  "VPCGW": {
+                    "id": "VPCGW",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/Vpc/VPCGW",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "Vpc8378EB38"
+                        },
+                        "internetGatewayId": {
+                          "Ref": "VpcIGWD7BA715C"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.Vpc",
+                  "version": "2.16.0"
+                }
+              },
+              "CDKMetadata": {
+                "id": "CDKMetadata",
+                "path": "BardestAwsResourcesStack/NetworkNestedStack/CDKMetadata",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "BardestAwsResourcesStack/NetworkNestedStack/CDKMetadata/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.0.87"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.NestedStack",
+              "version": "2.16.0"
+            }
+          },
+          "NetworkNestedStack.NestedStack": {
+            "id": "NetworkNestedStack.NestedStack",
+            "path": "BardestAwsResourcesStack/NetworkNestedStack.NestedStack",
+            "children": {
+              "NetworkNestedStack.NestedStackResource": {
+                "id": "NetworkNestedStack.NestedStackResource",
+                "path": "BardestAwsResourcesStack/NetworkNestedStack.NestedStack/NetworkNestedStack.NestedStackResource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFormation::Stack",
+                  "aws:cdk:cloudformation:props": {
+                    "templateUrl": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://s3.eu-west-1.",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          },
+                          "/",
+                          {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+                          },
+                          "/c4802768d504c5380d35e82019d4abc63f4ea5c5c9c5fa372fc92cbbc9d887d0.json"
+                        ]
+                      ]
+                    },
+                    "tags": [
+                      {
+                        "key": "application",
+                        "value": "bardest"
+                      },
+                      {
+                        "key": "environment",
+                        "value": "development"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnStack",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.87"
+            }
+          },
+          "DataNestedStack": {
+            "id": "DataNestedStack",
+            "path": "BardestAwsResourcesStack/DataNestedStack",
+            "children": {
+              "CDKMetadata": {
+                "id": "CDKMetadata",
+                "path": "BardestAwsResourcesStack/DataNestedStack/CDKMetadata",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "BardestAwsResourcesStack/DataNestedStack/CDKMetadata/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.16.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.0.87"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.NestedStack",
+              "version": "2.16.0"
+            }
+          },
+          "DataNestedStack.NestedStack": {
+            "id": "DataNestedStack.NestedStack",
+            "path": "BardestAwsResourcesStack/DataNestedStack.NestedStack",
+            "children": {
+              "DataNestedStack.NestedStackResource": {
+                "id": "DataNestedStack.NestedStackResource",
+                "path": "BardestAwsResourcesStack/DataNestedStack.NestedStack/DataNestedStack.NestedStackResource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFormation::Stack",
+                  "aws:cdk:cloudformation:props": {
+                    "templateUrl": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "https://s3.eu-west-1.",
+                          {
+                            "Ref": "AWS::URLSuffix"
+                          },
+                          "/",
+                          {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+                          },
+                          "/803a49b6e3fd83198b13e74d842652c8ef70093d6ff1a3b19635288e135c0d77.json"
+                        ]
+                      ]
+                    },
+                    "tags": [
+                      {
+                        "key": "application",
+                        "value": "bardest"
+                      },
+                      {
+                        "key": "environment",
+                        "value": "development"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnStack",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.87"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "BardestAwsResourcesStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "BardestAwsResourcesStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.16.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.87"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.16.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.16.0"
+    }
+  }
+}

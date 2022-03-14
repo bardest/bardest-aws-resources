@@ -1,0 +1,657 @@
+{
+  "Resources": {
+    "UserPool6BA7E5F2": {
+      "Type": "AWS::Cognito::UserPool",
+      "Properties": {
+        "AccountRecoverySetting": {
+          "RecoveryMechanisms": [
+            {
+              "Name": "verified_email",
+              "Priority": 1
+            }
+          ]
+        },
+        "AdminCreateUserConfig": {
+          "AllowAdminCreateUserOnly": false
+        },
+        "AliasAttributes": [
+          "email"
+        ],
+        "AutoVerifiedAttributes": [
+          "email"
+        ],
+        "EmailVerificationMessage": "The verification code to your new account is {####}",
+        "EmailVerificationSubject": "Verify your new account",
+        "MfaConfiguration": "OFF",
+        "Policies": {
+          "PasswordPolicy": {
+            "MinimumLength": 8,
+            "RequireLowercase": true,
+            "RequireNumbers": true,
+            "RequireSymbols": true,
+            "RequireUppercase": true
+          }
+        },
+        "Schema": [
+          {
+            "Mutable": true,
+            "Name": "name",
+            "Required": true
+          },
+          {
+            "Mutable": false,
+            "Name": "email",
+            "Required": true
+          },
+          {
+            "Mutable": true,
+            "Name": "phone_number",
+            "Required": true
+          },
+          {
+            "Mutable": false,
+            "Name": "birthdate",
+            "Required": true
+          },
+          {
+            "Mutable": true,
+            "Name": "address",
+            "Required": false
+          },
+          {
+            "Mutable": true,
+            "Name": "picture",
+            "Required": false
+          },
+          {
+            "Mutable": true,
+            "Name": "locale",
+            "Required": false
+          },
+          {
+            "Mutable": true,
+            "Name": "updated_at",
+            "Required": false
+          },
+          {
+            "AttributeDataType": "String",
+            "Mutable": true,
+            "Name": "theme",
+            "StringAttributeConstraints": {
+              "MaxLength": "8"
+            }
+          },
+          {
+            "AttributeDataType": "String",
+            "Mutable": true,
+            "Name": "bio"
+          },
+          {
+            "AttributeDataType": "String",
+            "Mutable": true,
+            "Name": "identityId"
+          }
+        ],
+        "SmsVerificationMessage": "The verification code to your new account is {####}",
+        "UserPoolName": "bardest-development-up",
+        "UserPoolTags": {
+          "application": "bardest",
+          "environment": "development"
+        },
+        "VerificationMessageTemplate": {
+          "DefaultEmailOption": "CONFIRM_WITH_CODE",
+          "EmailMessage": "The verification code to your new account is {####}",
+          "EmailSubject": "Verify your new account",
+          "SmsMessage": "The verification code to your new account is {####}"
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/UserPool/Resource"
+      }
+    },
+    "UserPoolClient2F5918F7": {
+      "Type": "AWS::Cognito::UserPoolClient",
+      "Properties": {
+        "UserPoolId": {
+          "Ref": "UserPool6BA7E5F2"
+        },
+        "AllowedOAuthFlows": [
+          "implicit",
+          "code"
+        ],
+        "AllowedOAuthFlowsUserPoolClient": true,
+        "AllowedOAuthScopes": [
+          "profile",
+          "phone",
+          "email",
+          "openid",
+          "aws.cognito.signin.user.admin"
+        ],
+        "CallbackURLs": [
+          "https://example.com"
+        ],
+        "ClientName": "bardest-development-up-cl",
+        "GenerateSecret": false,
+        "SupportedIdentityProviders": [
+          "COGNITO"
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/UserPoolClient/Resource"
+      }
+    },
+    "UserPoolNativeClient23FD4BF3": {
+      "Type": "AWS::Cognito::UserPoolClient",
+      "Properties": {
+        "UserPoolId": {
+          "Ref": "UserPool6BA7E5F2"
+        },
+        "AllowedOAuthFlows": [
+          "implicit",
+          "code"
+        ],
+        "AllowedOAuthFlowsUserPoolClient": true,
+        "AllowedOAuthScopes": [
+          "profile",
+          "phone",
+          "email",
+          "openid",
+          "aws.cognito.signin.user.admin"
+        ],
+        "CallbackURLs": [
+          "https://example.com"
+        ],
+        "ClientName": "bardest-development-up-ncl",
+        "GenerateSecret": true,
+        "SupportedIdentityProviders": [
+          "COGNITO"
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/UserPoolNativeClient/Resource"
+      }
+    },
+    "DefaultUserGroupRole83C8627C": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "UserPool6BA7E5F2"
+                  }
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AWSAppSyncInvokeFullAccess"
+        ],
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/DefaultUserGroupRole/Resource"
+      }
+    },
+    "AdminUserGroupRole0B484615": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "UserPool6BA7E5F2"
+                  }
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AWSAppSyncInvokeFullAccess"
+        ],
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/AdminUserGroupRole/Resource"
+      }
+    },
+    "DefaultUserGroup": {
+      "Type": "AWS::Cognito::UserPoolGroup",
+      "Properties": {
+        "UserPoolId": {
+          "Ref": "UserPool6BA7E5F2"
+        },
+        "GroupName": "default-ug",
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "DefaultUserGroupRole83C8627C",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/DefaultUserGroup"
+      }
+    },
+    "AdminUserGroup": {
+      "Type": "AWS::Cognito::UserPoolGroup",
+      "Properties": {
+        "UserPoolId": {
+          "Ref": "UserPool6BA7E5F2"
+        },
+        "GroupName": "admin-ug",
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "AdminUserGroupRole0B484615",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/AdminUserGroup"
+      }
+    },
+    "IdentityPool": {
+      "Type": "AWS::Cognito::IdentityPool",
+      "Properties": {
+        "AllowUnauthenticatedIdentities": true,
+        "CognitoIdentityProviders": [
+          {
+            "ClientId": {
+              "Ref": "UserPoolClient2F5918F7"
+            },
+            "ProviderName": {
+              "Fn::GetAtt": [
+                "UserPool6BA7E5F2",
+                "ProviderName"
+              ]
+            }
+          },
+          {
+            "ClientId": {
+              "Ref": "UserPoolNativeClient23FD4BF3"
+            },
+            "ProviderName": {
+              "Fn::GetAtt": [
+                "UserPool6BA7E5F2",
+                "ProviderName"
+              ]
+            }
+          }
+        ],
+        "IdentityPoolName": "bardest-development-ip"
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/IdentityPool"
+      }
+    },
+    "UnauthIdentityPoolRole1DFBBAB5": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "IdentityPool"
+                  }
+                },
+                "ForAnyValue:StringLike": {
+                  "cognito-identity.amazonaws.com:amr": "unauthenticated"
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Action": "s3:GetObject",
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                        },
+                        "/protected/*"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Action": "s3:PutObject",
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                        },
+                        "/uploads/*"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Action": "s3:ListBucket",
+                  "Condition": {
+                    "StringLike": {
+                      "s3:prefix": [
+                        "public/",
+                        "public/*",
+                        "protected/",
+                        "protected/*"
+                      ]
+                    }
+                  },
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                  }
+                },
+                {
+                  "Action": [
+                    "s3:GetObject",
+                    "s3:PutObject",
+                    "s3:DeleteObject"
+                  ],
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                        },
+                        "/public/*"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Action": "appsync:GraphQL",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:appsync:eu-west-1:*:apis/*"
+                },
+                {
+                  "Action": "appsync:GraphQL",
+                  "Effect": "Deny",
+                  "Resource": "arn:aws:appsync:eu-west-1:*:apis/*/types/Mutation/*"
+                }
+              ],
+              "Version": "2012-10-17"
+            },
+            "PolicyName": "iyiyeUnauthIdentityPoolRolePolicy"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/UnauthIdentityPoolRole/Resource"
+      }
+    },
+    "AuthIdentityPoolRole3CEC4DAC": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "IdentityPool"
+                  }
+                },
+                "ForAnyValue:StringLike": {
+                  "cognito-identity.amazonaws.com:amr": "authenticated"
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Statement": [
+                {
+                  "Action": "lambda:InvokeFunction",
+                  "Effect": "Allow",
+                  "Resource": "*"
+                },
+                {
+                  "Action": "s3:GetObject",
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                        },
+                        "/protected/*"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Action": "s3:PutObject",
+                  "Effect": "Allow",
+                  "Resource": [
+                    {
+                      "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                          },
+                          "/uploads/*"
+                        ]
+                      ]
+                    },
+                    {
+                      "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                          },
+                          "/protected/*"
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Action": "s3:ListBucket",
+                  "Condition": {
+                    "StringLike": {
+                      "s3:prefix": [
+                        "public/",
+                        "public/*",
+                        "protected/",
+                        "protected/*",
+                        "private/${cognito-identity.amazonaws.com:sub}/",
+                        "private/${cognito-identity.amazonaws.com:sub}/*"
+                      ]
+                    }
+                  },
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                  }
+                },
+                {
+                  "Action": [
+                    "s3:GetObject",
+                    "s3:PutObject",
+                    "s3:DeleteObject"
+                  ],
+                  "Effect": "Allow",
+                  "Resource": [
+                    {
+                      "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                          },
+                          "/public/*"
+                        ]
+                      ]
+                    },
+                    {
+                      "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                          },
+                          "/protected/${cognito-identity.amazonaws.com:sub}/*"
+                        ]
+                      ]
+                    },
+                    {
+                      "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+                          },
+                          "/private/${cognito-identity.amazonaws.com:sub}/*"
+                        ]
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Action": "appsync:GraphQL",
+                  "Effect": "Allow",
+                  "Resource": "arn:aws:appsync:eu-west-1:*:apis/*"
+                }
+              ],
+              "Version": "2012-10-17"
+            },
+            "PolicyName": "iyiyeAuthIdentityPoolRolePolicy"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/AuthIdentityPoolRole/Resource"
+      }
+    },
+    "IdentityPoolRoleAttachment": {
+      "Type": "AWS::Cognito::IdentityPoolRoleAttachment",
+      "Properties": {
+        "IdentityPoolId": {
+          "Ref": "IdentityPool"
+        },
+        "Roles": {
+          "unauthenticated": {
+            "Fn::GetAtt": [
+              "UnauthIdentityPoolRole1DFBBAB5",
+              "Arn"
+            ]
+          },
+          "authenticated": {
+            "Fn::GetAtt": [
+              "AuthIdentityPoolRole3CEC4DAC",
+              "Arn"
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/IdentityPoolRoleAttachment"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/2WPwQrCMBBEv8V7uloF79KDeBGpeJaarJo2yUqSKhLy7ybUSsHTzL5ZdpkllGtYzJqXK7joCiUvEPboPIqjb3jHUnAOnG5GeoJwcmgPRIpVV/Pzo6mUROOn0T/ZWuofGexESqR/j9emc00KNz69v+sEI5ONhpBhXswaI6vRUW/5gL4+MkMCoXXzZypVrlKv1klZ2D6d1gj1oB8hwtAs8wAAAA=="
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack/CDKMetadata/Default"
+      }
+    }
+  },
+  "Parameters": {
+    "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn": {
+      "Type": "String"
+    }
+  }
+}

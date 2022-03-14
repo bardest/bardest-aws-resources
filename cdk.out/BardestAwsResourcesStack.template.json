@@ -1,0 +1,207 @@
+{
+  "Resources": {
+    "StorageNestedStackNestedStackStorageNestedStackNestedStackResource6E4B7B88": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Fn::Join": [
+            "",
+            [
+              "https://s3.eu-west-1.",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+              },
+              "/93b424a3c738d4ac3fa78cdc64908e12677d0c4aa609fe057f231cd226df342b.json"
+            ]
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/StorageNestedStack.NestedStack/StorageNestedStack.NestedStackResource",
+        "aws:asset:path": "BardestAwsResourcesStackStorageNestedStack3732A98C.nested.template.json",
+        "aws:asset:property": "TemplateURL"
+      }
+    },
+    "CognitoNestedStackNestedStackCognitoNestedStackNestedStackResource9BD343E7": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Fn::Join": [
+            "",
+            [
+              "https://s3.eu-west-1.",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+              },
+              "/77579079e7a33825f4cd48ed61f500c724574ed09be45ed1ce9ebeb37dc4f86f.json"
+            ]
+          ]
+        },
+        "Parameters": {
+          "referencetoBardestAwsResourcesStackStorageNestedStackNestedStackStorageNestedStackNestedStackResourceB8DA4EE6OutputsBardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn": {
+            "Fn::GetAtt": [
+              "StorageNestedStackNestedStackStorageNestedStackNestedStackResource6E4B7B88",
+              "Outputs.BardestAwsResourcesStackStorageNestedStackUserFilesBucket8244043FArn"
+            ]
+          }
+        },
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CognitoNestedStack.NestedStack/CognitoNestedStack.NestedStackResource",
+        "aws:asset:path": "BardestAwsResourcesStackCognitoNestedStack090D13C7.nested.template.json",
+        "aws:asset:property": "TemplateURL"
+      }
+    },
+    "NetworkNestedStackNestedStackNetworkNestedStackNestedStackResource7CD4F320": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Fn::Join": [
+            "",
+            [
+              "https://s3.eu-west-1.",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+              },
+              "/c4802768d504c5380d35e82019d4abc63f4ea5c5c9c5fa372fc92cbbc9d887d0.json"
+            ]
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/NetworkNestedStack.NestedStack/NetworkNestedStack.NestedStackResource",
+        "aws:asset:path": "BardestAwsResourcesStackNetworkNestedStack48D1966B.nested.template.json",
+        "aws:asset:property": "TemplateURL"
+      }
+    },
+    "DataNestedStackNestedStackDataNestedStackNestedStackResourceEA75B1C9": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": {
+          "Fn::Join": [
+            "",
+            [
+              "https://s3.eu-west-1.",
+              {
+                "Ref": "AWS::URLSuffix"
+              },
+              "/",
+              {
+                "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-1"
+              },
+              "/803a49b6e3fd83198b13e74d842652c8ef70093d6ff1a3b19635288e135c0d77.json"
+            ]
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "application",
+            "Value": "bardest"
+          },
+          {
+            "Key": "environment",
+            "Value": "development"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/DataNestedStack.NestedStack/DataNestedStack.NestedStackResource",
+        "aws:asset:path": "BardestAwsResourcesStackDataNestedStackC2028CCA.nested.template.json",
+        "aws:asset:property": "TemplateURL"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSMzTTM1BMLC/WTU7J1s3JTNKrDi5JTM7WcU7LgzOCUovzS4uSU2t18vJTUvWyivXLgNoMjYE6s4ozM3WLSvNKMnNT9YIgNAAJG9oDVQAAAA=="
+      },
+      "Metadata": {
+        "aws:cdk:path": "BardestAwsResourcesStack/CDKMetadata/Default"
+      }
+    }
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+        }
+      ]
+    }
+  }
+}
