@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import '../env'
 import { App, Tags } from 'aws-cdk-lib';
 import { BardestAwsResourcesStack } from '../lib/bardest-aws-resources-stack';
 import { appNamingPrefix, environment } from '../lib/constants';
